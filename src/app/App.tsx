@@ -1,22 +1,21 @@
-import React, {MouseEvent, Suspense, useCallback, useTransition} from 'react';
+import React, { Suspense } from 'react';
 import './styles/index.scss';
-import {useTheme} from "app/providers/ThemeProvider";
-import {classNames} from "shared/lib/className/classNames";
-import {AppRouter} from "app/providers/router";
-import {Navbar} from "widgets/Navbar";
-import {Sidebar} from "widgets/Sidebar"
-import {useTranslation} from "react-i18next";
+import { useTheme } from 'app/providers/ThemeProvider';
+import { classNames } from 'shared/lib/className/classNames';
+import { AppRouter } from 'app/providers/router';
+import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
 
 export function App() {
-    const {theme} = useTheme()
+    const { theme } = useTheme();
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback={''}>
-                <Navbar/>
-                <div className={'content-page'}>
-                    <Sidebar/>
-                    <AppRouter/>
+            <Suspense fallback="">
+                <Navbar />
+                <div className="content-page">
+                    <Sidebar />
+                    <AppRouter />
                 </div>
             </Suspense>
         </div>
