@@ -1,9 +1,9 @@
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BuildOptions } from './types/config';
-import { buildCssLoaders } from './loaders/buildCssLoaders';
+import { buildCssLoader } from './loaders/buildCssLoader';
 
-export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
+export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     const typescriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -41,7 +41,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         },
     };
 
-    const cssLoaders = buildCssLoaders(isDev);
+    const cssLoaders = buildCssLoader(isDev);
     return [
         fileLoader,
         svgLoader,
