@@ -1,11 +1,11 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpack, { DefinePlugin } from 'webpack';
+import webpack, {DefinePlugin} from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { BuildPaths } from './types/config';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import {BuildPaths} from './types/config';
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 
 export function buildPlugins(paths: BuildPaths, isDev: boolean): webpack.WebpackPluginInstance[] {
-    return [
+    const plugins = [
         new HtmlWebpackPlugin({
             template: paths.html,
         }),
@@ -17,9 +17,18 @@ export function buildPlugins(paths: BuildPaths, isDev: boolean): webpack.Webpack
         new DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
         }),
-        new webpack.HotModuleReplacementPlugin(),
         new BundleAnalyzerPlugin({
             openAnalyzer: true
         }),
     ];
+    if (isDev) {
+        plugins.push(
+            new webpack.HotModuleReplacementPlugin(),
+            new BundleAnalyzerPlugin({
+                openAnalyzer: true
+            })
+        )
+    }
+
+    return plugins
 }
