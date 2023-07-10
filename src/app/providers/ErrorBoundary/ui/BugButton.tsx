@@ -1,14 +1,13 @@
 import { Button } from 'shared/ui/Button/Button';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-// Кнопка для тестирования
+// Компонент для тестирования ErrorBoundary
 export const BugButton = () => {
     const [error, setError] = useState(false);
     const { t } = useTranslation();
-    const onThrow = useCallback(() => {
-        setError(true);
-    }, []);
+
+    const onThrow = () => setError(true);
 
     useEffect(() => {
         if (error) {
@@ -17,7 +16,9 @@ export const BugButton = () => {
     }, [error]);
 
     return (
-        <Button onClick={onThrow}>
+        <Button
+            onClick={onThrow}
+        >
             {t('throw error')}
         </Button>
     );

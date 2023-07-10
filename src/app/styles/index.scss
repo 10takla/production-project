@@ -1,7 +1,7 @@
 @import "reset";
-@import "themes/dark";
-@import "themes/normal";
 @import "variables/global";
+@import "themes/normal";
+@import "themes/dark";
 
 .app {
     font: var(--font-m);
@@ -12,7 +12,6 @@
 
 .content-page {
     display: flex;
-
 }
 
 .page-wrapper {
